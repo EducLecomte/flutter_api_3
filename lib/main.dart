@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.red,
         ),
         home: const MyHomePage(title: 'Flutter Demo PokeApi'),
+        debugShowCheckedModeBanner: false,
         routes: <String, WidgetBuilder>{'/affiche': (BuildContext context) => AffichePage(title: 'Affichage')});
   }
 }

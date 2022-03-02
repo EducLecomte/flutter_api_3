@@ -27,15 +27,15 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextFormField(
-                decoration: const InputDecoration(labelText: "N° du pokémon", hintText: "Saisir l'id d'un Pokémon"),
+                decoration: const InputDecoration(labelText: "N° du Pokémon", hintText: "Saisir l'id d'un Pokémon"),
                 //initialValue: "9782841774470",
                 inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9]')), LengthLimitingTextInputFormatter(3)],
                 // The validator receives the text that the user has entered.
-                validator: (valeur) {
-                  if (valeur == null || valeur.isEmpty || valeur.length > 151) {
-                    return 'N° de pokémon non valide !';
+                validator: (value) {
+                  if (value == null || value.isEmpty || value.compareTo("151") > 0) {
+                    return 'N° de Pokémon non valide !';
                   } else {
-                    _valeurSaisie = valeur;
+                    _valeurSaisie = value;
                   }
                 },
               ),

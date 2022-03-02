@@ -14,7 +14,7 @@ class AffichePage extends StatefulWidget {
 class _AffichePageState extends State<AffichePage> {
   Map<String, dynamic> dataMap = new Map();
   bool recupDataBool = false;
-  int id = 0;
+  String id = "0";
 
   void recupData() async {
     await recupDataJson();
@@ -26,7 +26,7 @@ class _AffichePageState extends State<AffichePage> {
   }
 
   Future<void> recupDataJson() async {
-    String url = "https://pokeapi.co/api/v2/pokemon/" + this.id.toString();
+    String url = "https://pokeapi.co/api/v2/pokemon/" + this.id;
     var reponse = await http.get(Uri.parse(url));
     if (reponse.statusCode == 200) {
       dataMap = convert.jsonDecode(reponse.body);
@@ -63,14 +63,10 @@ class _AffichePageState extends State<AffichePage> {
       ],
     );
   }
-/*   @override
-  void dispose() {
-    super.dispose();
-  } */
 
   @override
   Widget build(BuildContext context) {
-    id = int.parse(ModalRoute.of(context)?.settings.arguments as String);
+    id = ModalRoute.of(context)?.settings.arguments as String;
     if (!recupDataBool) {
       recupData();
     }
