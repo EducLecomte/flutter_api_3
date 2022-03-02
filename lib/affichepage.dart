@@ -41,7 +41,7 @@ class _AffichePageState extends State<AffichePage> {
     );
 
     Map<String, dynamic> spritesData = dataMap['sprites'];
-    contenu.children.add(Image.network(spritesData['front_default'].toString()));
+    //contenu.children.add(Image.network(spritesData['front_default'].toString()));
     contenu.children.add(Image.network(spritesData['other']['official-artwork']['front_default'].toString()));
 
     List<dynamic> formsData = dataMap['forms'];
