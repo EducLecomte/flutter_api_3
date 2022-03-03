@@ -12,7 +12,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _formKey = GlobalKey<FormState>();
-  String _valeurSaisie = "";
+  int _valeurSaisie = 1;
+
+  bool isNumeric(String s) {
+    bool isnum = false;
+    try {
+      double.parse(s);
+      isnum = true;
+    } catch (e) {}
+    return isnum;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9]')), LengthLimitingTextInputFormatter(3)],
                 // The validator receives the text that the user has entered.
                 validator: (value) {
-                  if (value == null || value.isEmpty || value.compareTo("151") > 0) {
+                  if (value == null || value.isEmpty || !isNumeric(value)) {
                     return 'N° de Pokémon non valide !';
                   } else {
-                    _valeurSaisie = value;
+                    _valeurSaisie = int.parse(value);
                   }
                 },
               ),
