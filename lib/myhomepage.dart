@@ -14,7 +14,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _formKey = GlobalKey<FormState>();
-  int _valeurSaisie = 1;
 
   Map<String, dynamic> dataMap = new Map();
   bool recupDataBool = false;
