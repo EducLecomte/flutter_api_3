@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
 
 class AffichePage extends StatefulWidget {
   const AffichePage({Key? key, required this.title}) : super(key: key);
