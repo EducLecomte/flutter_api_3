@@ -26,6 +26,8 @@ class _MyHomePageState extends State<MyHomePage> {
     if (reponse.statusCode == 200) {
       dataMap = convert.jsonDecode(reponse.body);
       recupDataBool = true;
+    } else {
+      recupDataBool = false;
     }
   }
 
@@ -79,12 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         );
                       }
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Erreur la saisie."),
-                        ),
-                      );
                     }
                   },
                   child: const Text('Submit'),
