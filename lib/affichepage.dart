@@ -16,23 +16,14 @@ class _AffichePageState extends State<AffichePage> {
   bool recupDataBool = false;
   int id = 1;
 
-  void recupData() async {
+/*   void recupData() async {
     await recupDataJson();
     if (mounted) {
       setState(() {
         recupDataJson;
       });
     }
-  }
-
-  Future<void> recupDataJson() async {
-    String url = "https://pokeapi.co/api/v2/pokemon/" + this.id.toString();
-    var reponse = await http.get(Uri.parse(url));
-    if (reponse.statusCode == 200) {
-      dataMap = convert.jsonDecode(reponse.body);
-      recupDataBool = true;
-    }
-  }
+  } */
 
   Widget afficheData() {
     Column contenu = Column(
@@ -51,29 +42,16 @@ class _AffichePageState extends State<AffichePage> {
     return contenu;
   }
 
-  Widget attente() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const <Widget>[
-        Text('En attente des données', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
-        CircularProgressIndicator(),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    id = ModalRoute.of(context)?.settings.arguments as int;
+    dataMap = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
 
-    if (!recupDataBool) {
-      recupData();
-    }
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
       body: Center(
-        child: recupDataBool ? afficheData() : attente(),
+        child: afficheData(),
       ),
     );
   }
