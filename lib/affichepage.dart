@@ -11,8 +11,6 @@ class AffichePage extends StatefulWidget {
 
 class _AffichePageState extends State<AffichePage> {
   Map<String, dynamic> dataMap = new Map();
-  bool recupDataBool = false;
-  int id = 1;
 
 /*   void recupData() async {
     await recupDataJson();
@@ -34,8 +32,6 @@ class _AffichePageState extends State<AffichePage> {
     contenu.children.add(Text("Name: " + dataMap['forms'][0]['name'].toString()));
     contenu.children.add(Text("Height: " + dataMap['height'].toString()));
     contenu.children.add(Text("Weight: " + dataMap['weight'].toString()));
-
-    recupDataBool = false;
 
     return contenu;
   }
