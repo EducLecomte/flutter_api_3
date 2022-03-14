@@ -14,12 +14,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Pokédex',
         theme: ThemeData(
           primarySwatch: Colors.red,
         ),
-        home: const MyHomePage(title: 'Flutter Demo PokeApi'),
+        home: const MyHomePage(title: 'Pokédex'),
         debugShowCheckedModeBanner: false,
-        routes: <String, WidgetBuilder>{'/affiche': (BuildContext context) => AffichePage(title: 'Affichage')});
+        routes: <String, WidgetBuilder>{
+          '/affiche': (BuildContext context) => AffichePage(title: 'Affichage'),
+          '/login': (BuildContext context) => MyHomePage(title: 'Pokédex'),
+        });
   }
 }

@@ -12,15 +12,6 @@ class AffichePage extends StatefulWidget {
 class _AffichePageState extends State<AffichePage> {
   Map<String, dynamic> dataMap = new Map();
 
-/*   void recupData() async {
-    await recupDataJson();
-    if (mounted) {
-      setState(() {
-        recupDataJson;
-      });
-    }
-  } */
-
   Widget afficheData() {
     Column contenu = Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -41,12 +32,21 @@ class _AffichePageState extends State<AffichePage> {
     dataMap = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: afficheData(),
-      ),
-    );
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            afficheData(),
+          ],
+        )),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.search),
+          onPressed: () {
+            Navigator.popAndPushNamed(context, '/login');
+          },
+        ));
   }
 }
