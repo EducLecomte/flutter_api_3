@@ -15,6 +15,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final _formKey = GlobalKey<FormState>();
 
+  String txtButton = "Submit";
+  bool _isLoading = false;
+
   Map<String, dynamic> dataMap = new Map();
   bool recupDataBool = false;
   int id = 1;
@@ -27,6 +30,32 @@ class _MyHomePageState extends State<MyHomePage> {
       recupDataBool = true;
     } else {
       recupDataBool = false;
+    }
+  }
+
+  startLoading() async {
+    setState(() {
+      _isLoading = true;
+    });
+    // Validate returns true if the form is valid, or false otherwise.
+    if (_formKey.currentState!.validate()) {
+      await recupDataJson();
+      if (recupDataBool) {
+        Navigator.popAndPushNamed(context, '/affiche', arguments: dataMap);
+      } else {
+        setState(() {
+          _isLoading = false;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Erreur dans recupération des informations."),
+          ),
+        );
+      }
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -67,22 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ElevatedButton(
-                  onPressed: () async {
-                    // Validate returns true if the form is valid, or false otherwise.
-                    if (_formKey.currentState!.validate()) {
-                      await recupDataJson();
-                      if (recupDataBool) {
-                        Navigator.pushNamed(context, '/affiche', arguments: dataMap);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Erreur dans recupération des informations."),
-                          ),
-                        );
-                      }
-                    }
-                  },
-                  child: const Text('Submit'),
+                  onPressed: _isLoading ? null : startLoading,
+                  child: _isLoading ? CircularProgressIndicator() : Text("Submit"),
                 ),
               ),
             ],
