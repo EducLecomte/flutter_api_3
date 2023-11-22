@@ -18,11 +18,8 @@ class _AffichePageState extends State<AffichePage> {
       children: List.empty(growable: true),
     );
 
-    contenu.children.add(Image.network(dataMap['sprites']['front_default'].toString()));
-    //contenu.children.add(Image.network(dataMap['sprites']['other']['official-artwork']['front_default'].toString()));
-    contenu.children.add(Text("Name: " + dataMap['forms'][0]['name'].toString()));
-    contenu.children.add(Text("Height: " + dataMap['height'].toString()));
-    contenu.children.add(Text("Weight: " + dataMap['weight'].toString()));
+    contenu.children.add(Image.network(dataMap['sprite'].toString()));
+    contenu.children.add(Text("Nom: " + dataMap['name'].toString()));
 
     return contenu;
   }

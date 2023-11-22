@@ -23,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int id = 1;
 
   Future<void> recupDataJson() async {
-    String url = "https://pokeapi.co/api/v2/pokemon/" + this.id.toString();
+    String url = "https://pokebuildapi.fr/api/v1/pokemon/" + this.id.toString();
     var reponse = await http.get(Uri.parse(url));
     if (reponse.statusCode == 200) {
       dataMap = convert.jsonDecode(reponse.body);
@@ -81,7 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextFormField(
-                decoration: const InputDecoration(border: OutlineInputBorder(), labelText: "N° du Pokémon", hintText: "Saisir l'id d'un Pokémon"),
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), labelText: "N° du Pokémon", hintText: "Saisir l'id d'un Pokémon"),
                 //initialValue: "9782841774470",
                 inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9]')), LengthLimitingTextInputFormatter(3)],
                 // The validator receives the text that the user has entered.
